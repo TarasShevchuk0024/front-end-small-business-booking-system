@@ -1,23 +1,23 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, User, Euro } from "lucide-react"
+import { Booking } from "@/types/api"
 
-interface BookingCardProps {
-  id: string
-  serviceName: string
-  clientName: string
-  dateTime: string
-  duration: number
-  price: number
-  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED'
+interface BookingCardProps extends Booking {
+  serviceName?: string
+  clientName?: string
+  onAccept?: () => void
+  onCancel?: () => void
+  onDelete?: () => void
 }
 
 export function BookingCard({ 
-  serviceName, 
-  clientName, 
-  dateTime, 
-  duration, 
-  price, 
-  status 
+  serviceName = "Service", 
+  clientName = "Client", 
+  date_time, 
+  status,
+  onAccept,
+  onCancel,
+  onDelete
 }: BookingCardProps) {
   const statusColors = {
     PENDING: 'bg-warning text-warning-foreground',
@@ -49,29 +49,41 @@ export function BookingCard({
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="flex items-center text-muted-foreground">
           <Calendar className="w-4 h-4 mr-2" />
-          <span className="text-sm">{new Date(dateTime).toLocaleDateString('uk-UA')}</span>
+          <span className="text-sm">{new Date(date_time).toLocaleDateString('uk-UA')}</span>
         </div>
         <div className="flex items-center text-muted-foreground">
           <Clock className="w-4 h-4 mr-2" />
-          <span className="text-sm">{duration} хв</span>
+          <span className="text-sm">{new Date(date_time).toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' })}</span>
         </div>
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center text-foreground font-semibold">
-          <Euro className="w-4 h-4 mr-1" />
-          <span>{price.toFixed(2)}</span>
+        <div className="text-muted-foreground text-sm">
+          ID: {status === 'CONFIRMED' ? '✓' : status === 'CANCELLED' ? '✗' : '⏳'} 
+          {new Date(date_time).toLocaleString('uk-UA')}
         </div>
         
         {status === 'PENDING' && (
           <div className="flex space-x-2">
-            <Button size="sm" variant="outline">
+            <Button size="sm" variant="outline" onClick={onCancel}>
               Скасувати
             </Button>
-            <Button size="sm" variant="success">
+            <Button size="sm" variant="success" onClick={onAccept}>
               Підтвердити
             </Button>
           </div>
+        )}
+        
+        {status === 'CONFIRMED' && (
+          <Button size="sm" variant="outline" onClick={onCancel}>
+            Скасувати
+          </Button>
+        )}
+        
+        {status === 'CANCELLED' && (
+          <Button size="sm" variant="destructive" onClick={onDelete}>
+            Видалити
+          </Button>
         )}
       </div>
     </div>
