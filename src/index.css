@@ -2,41 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Business Booking System Design System
+Professional yet friendly colors perfect for booking platforms.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Background & Base */
+    --background: 220 20% 98%;
+    --foreground: 224 15% 15%;
 
+    /* Cards & Surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 224 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 224 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep Business Blue */
+    --primary: 221 83% 22%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 221 70% 45%;
+    --primary-glow: 221 70% 60%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Orange Accent */
+    --secondary: 25 95% 53%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 25 95% 65%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success - Booking Confirmed Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 69% 58%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warning - Pending Orange */
+    --warning: 43 96% 56%;
+    --warning-foreground: 224 15% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muted Tones */
+    --muted: 220 14% 96%;
+    --muted-foreground: 224 10% 40%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Accent - Light Blue */
+    --accent: 200 95% 92%;
+    --accent-foreground: 221 83% 22%;
 
-    --radius: 0.5rem;
+    /* Destructive - Cancel Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 22%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 50%, hsl(var(--secondary-light)) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-light)));
+
+    /* Shadows */
+    --shadow-booking: 0 10px 30px -10px hsl(var(--primary) / 0.2);
+    --shadow-card: 0 4px 20px hsl(var(--primary) / 0.08);
+    --shadow-hover: 0 8px 30px hsl(var(--primary) / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 12px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +91,44 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark theme for booking system */
+    --background: 224 20% 8%;
+    --foreground: 220 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 224 15% 12%;
+    --card-foreground: 220 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 15% 12%;
+    --popover-foreground: 220 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 221 83% 60%;
+    --primary-foreground: 224 20% 8%;
+    --primary-light: 221 70% 70%;
+    --primary-glow: 221 70% 80%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 25 95% 60%;
+    --secondary-foreground: 224 20% 8%;
+    --secondary-light: 25 95% 70%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --success: 142 69% 58%;
+    --success-foreground: 224 20% 8%;
+    --success-light: 142 69% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --warning: 43 96% 65%;
+    --warning-foreground: 224 20% 8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --muted: 224 10% 15%;
+    --muted-foreground: 220 10% 60%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --accent: 224 10% 15%;
+    --accent-foreground: 221 83% 60%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 95%;
+
+    --border: 224 10% 20%;
+    --input: 224 10% 20%;
+    --ring: 221 83% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
