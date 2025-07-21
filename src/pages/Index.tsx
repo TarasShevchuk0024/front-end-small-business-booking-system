@@ -9,12 +9,14 @@ import { Plus, BarChart3, Users, Calendar } from "lucide-react"
 import { useServices } from "@/hooks/useServices"
 import { useBookings } from "@/hooks/useBookings"
 import { useAuth } from "@/hooks/useAuth"
+import { useI18n } from "@/hooks/useI18n"
 import { Service, Booking } from "@/types/api"
 
 const Index = () => {
   const { services, loading: servicesLoading, createService, deleteService } = useServices()
   const { bookings, loading: bookingsLoading, acceptBooking, cancelBooking, deleteBooking } = useBookings()
   const { user, isAuthenticated } = useAuth()
+  const { t } = useI18n()
   
   // Demo stats - in real app these would come from API
   const stats = {
@@ -32,7 +34,7 @@ const Index = () => {
   const handleServiceBook = (service: Service) => {
     if (!isAuthenticated) {
       // Redirect to login or show login modal
-      console.log('Please login to book a service')
+      console.log(t('loginRequired'))
       return
     }
     
@@ -41,7 +43,7 @@ const Index = () => {
   }
 
   const handleServiceDelete = async (serviceId: string) => {
-    if (window.confirm('Ви впевнені, що хочете видалити цю послугу?')) {
+    if (window.confirm(t('confirmDeleteService'))) {
       await deleteService(serviceId)
     }
   }
@@ -55,7 +57,7 @@ const Index = () => {
   }
 
   const handleBookingDelete = async (bookingId: string) => {
-    if (window.confirm('Ви впевнені, що хочете видалити це бронювання?')) {
+    if (window.confirm(t('confirmDeleteBooking'))) {
       await deleteBooking(bookingId)
     }
   }
@@ -65,7 +67,7 @@ const Index = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Завантаження...</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -78,12 +80,12 @@ const Index = () => {
       
       <main className="max-w-7xl mx-auto px-4 py-12 space-y-12">
         <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-primary p-6 rounded-xl text-white">
+            <div className="bg-gradient-primary p-6 rounded-xl text-white">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/80 text-sm">Всього бронювань</p>
+                <p className="text-white/80 text-sm">{t('totalBookings')}</p>
                 <p className="text-2xl font-bold">{stats.totalBookings}</p>
-                <p className="text-white/80 text-xs">Загальна кількість</p>
+                <p className="text-white/80 text-xs">{t('totalCount')}</p>
               </div>
               <Calendar className="w-8 h-8 text-white/60" />
             </div>
@@ -92,9 +94,9 @@ const Index = () => {
           <div className="bg-gradient-success p-6 rounded-xl text-white">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/80 text-sm">Підтверджено</p>
+                <p className="text-white/80 text-sm">{t('confirmed')}</p>
                 <p className="text-2xl font-bold">{stats.confirmedBookings}</p>
-                <p className="text-white/80 text-xs">{stats.totalBookings > 0 ? Math.round((stats.confirmedBookings / stats.totalBookings) * 100) : 0}% від загальної кількості</p>
+                <p className="text-white/80 text-xs">{stats.totalBookings > 0 ? Math.round((stats.confirmedBookings / stats.totalBookings) * 100) : 0}% від {t('totalCount')}</p>
               </div>
               <BarChart3 className="w-8 h-8 text-white/60" />
             </div>
@@ -103,9 +105,9 @@ const Index = () => {
           <div className="bg-card border border-border p-6 rounded-xl shadow-card-soft">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-muted-foreground text-sm">Активні клієнти</p>
+                <p className="text-muted-foreground text-sm">{t('activeClients')}</p>
                 <p className="text-2xl font-bold text-foreground">{stats.activeClients}</p>
-                <p className="text-muted-foreground text-xs">Унікальні клієнти</p>
+                <p className="text-muted-foreground text-xs">{t('uniqueClients')}</p>
               </div>
               <Users className="w-8 h-8 text-muted-foreground" />
             </div>
@@ -114,12 +116,12 @@ const Index = () => {
           <div className="bg-card border border-border p-6 rounded-xl shadow-card-soft">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-muted-foreground text-sm">Дохід</p>
-                <p className="text-2xl font-bold text-foreground">€{stats.revenue.toFixed(2)}</p>
-                <p className="text-success text-xs">Підтверджені бронювання</p>
+                <p className="text-muted-foreground text-sm">{t('revenue')}</p>
+                <p className="text-2xl font-bold text-foreground">{t('euro')}{stats.revenue.toFixed(2)}</p>
+                <p className="text-success text-xs">{t('confirmed')} бронювання</p>
               </div>
               <div className="w-8 h-8 bg-secondary/20 rounded-lg flex items-center justify-center">
-                <span className="text-secondary font-bold">€</span>
+                <span className="text-secondary font-bold">{t('euro')}</span>
               </div>
             </div>
           </div>
@@ -135,10 +137,10 @@ const Index = () => {
           {/* Services */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-foreground">Ваші послуги</h2>
+              <h2 className="text-2xl font-semibold text-foreground">{t('yourServices')}</h2>
               <Button variant="outline">
                 <Plus className="w-4 h-4 mr-2" />
-                Додати послугу
+                {t('addService')}
               </Button>
             </div>
             <div className="space-y-4">
@@ -153,7 +155,7 @@ const Index = () => {
               ))}
               {services.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground">
-                  <p>Немає послуг. Додайте першу послугу!</p>
+                  <p>{t('noServices')}</p>
                 </div>
               )}
             </div>
@@ -162,8 +164,8 @@ const Index = () => {
           {/* Recent Bookings */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-foreground">Останні бронювання</h2>
-              <Button variant="outline">Переглянути всі</Button>
+              <h2 className="text-2xl font-semibold text-foreground">{t('recentBookings')}</h2>
+              <Button variant="outline">{t('viewAll')}</Button>
             </div>
             <div className="space-y-4">
               {bookings.slice(0, 5).map((booking) => (
@@ -179,7 +181,7 @@ const Index = () => {
               ))}
               {bookings.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground">
-                  <p>Немає бронювань</p>
+                  <p>{t('noBookings')}</p>
                 </div>
               )}
             </div>

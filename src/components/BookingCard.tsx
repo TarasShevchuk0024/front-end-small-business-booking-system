@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, User, Euro } from "lucide-react"
 import { Booking } from "@/types/api"
+import { useI18n } from "@/hooks/useI18n"
 
 interface BookingCardProps extends Booking {
   serviceName?: string
@@ -19,16 +20,20 @@ export function BookingCard({
   onCancel,
   onDelete
 }: BookingCardProps) {
+  const { t } = useI18n()
+  
   const statusColors = {
     PENDING: 'bg-warning text-warning-foreground',
     CONFIRMED: 'bg-success text-success-foreground',
     CANCELLED: 'bg-destructive text-destructive-foreground'
   }
 
-  const statusText = {
-    PENDING: 'Очікує',
-    CONFIRMED: 'Підтверджено',
-    CANCELLED: 'Скасовано'
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'CONFIRMED': return t('confirmedStatus')
+      case 'CANCELLED': return t('cancelled')
+      default: return t('pending')
+    }
   }
 
   return (
@@ -42,7 +47,7 @@ export function BookingCard({
           </div>
         </div>
         <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[status]}`}>
-          {statusText[status]}
+          {getStatusText(status)}
         </span>
       </div>
 
@@ -66,23 +71,23 @@ export function BookingCard({
         {status === 'PENDING' && (
           <div className="flex space-x-2">
             <Button size="sm" variant="outline" onClick={onCancel}>
-              Скасувати
+              {t('cancel')}
             </Button>
             <Button size="sm" variant="success" onClick={onAccept}>
-              Підтвердити
+              {t('accept')}
             </Button>
           </div>
         )}
         
         {status === 'CONFIRMED' && (
           <Button size="sm" variant="outline" onClick={onCancel}>
-            Скасувати
+            {t('cancel')}
           </Button>
         )}
         
         {status === 'CANCELLED' && (
           <Button size="sm" variant="destructive" onClick={onDelete}>
-            Видалити
+            {t('delete')}
           </Button>
         )}
       </div>

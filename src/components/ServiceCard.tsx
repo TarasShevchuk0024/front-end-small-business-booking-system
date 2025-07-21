@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Clock, Euro, Star, Edit, Trash2 } from "lucide-react"
 import { Service } from "@/types/api"
+import { useI18n } from "@/hooks/useI18n"
 
 interface ServiceCardProps extends Service {
   rating?: number
@@ -21,6 +22,8 @@ export function ServiceCard({
   onDelete,
   showActions = false
 }: ServiceCardProps) {
+  const { t } = useI18n()
+  
   return (
     <div className="bg-gradient-card p-6 rounded-xl border border-border shadow-card-soft hover:shadow-hover-lift transition-all duration-300 group animate-scale-in">
       <div className="mb-4">
@@ -41,11 +44,10 @@ export function ServiceCard({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center text-muted-foreground">
           <Clock className="w-4 h-4 mr-2" />
-          <span className="text-sm">{duration_minutes} хвилин</span>
+          <span className="text-sm">{duration_minutes} {t('minutes')}</span>
         </div>
         <div className="flex items-center text-foreground font-semibold text-lg">
-          <Euro className="w-5 h-5 mr-1" />
-          <span>{price_eur.toFixed(2)}</span>
+          <span>{t('euro')}{price_eur.toFixed(2)}</span>
         </div>
       </div>
 
@@ -57,7 +59,7 @@ export function ServiceCard({
           </Button>
           <Button size="sm" variant="destructive" onClick={onDelete}>
             <Trash2 className="w-4 h-4 mr-1" />
-            Видалити
+            {t('deleteService')}
           </Button>
         </div>
       ) : (
@@ -66,7 +68,7 @@ export function ServiceCard({
           className="w-full" 
           variant="booking"
         >
-          Забронювати
+          {t('book')}
         </Button>
       )}
     </div>
