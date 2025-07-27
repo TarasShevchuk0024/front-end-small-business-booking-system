@@ -61,7 +61,49 @@ export const translations = {
     euro: "€",
     pending: "Очікує",
     confirmedStatus: "Підтверджено",
-    cancelled: "Скасовано"
+    cancelled: "Скасовано",
+    
+    // Auth
+    auth: "Авторизація",
+    authDescription: "Увійдіть або зареєструйтесь",
+    login: "Увійти",
+    signUp: "Зареєструватись",
+    email: "Електронна пошта",
+    password: "Пароль",
+    firstName: "Ім'я",
+    lastName: "Прізвище",
+    phone: "Телефон",
+    success: "Успіх",
+    error: "Помилка",
+    loginSuccess: "Ви успішно увійшли в систему",
+    signUpSuccess: "Ви успішно зареєструвались",
+    logout: "Вийти",
+    
+    // Business
+    createBusiness: "Створити бізнес",
+    businessDescription: "Створіть свій бізнес-профіль",
+    businessName: "Назва бізнесу",
+    description: "Опис",
+    businessCreated: "Бізнес успішно створено",
+    businessCreateError: "Помилка створення бізнесу",
+    manageBusiness: "Керування бізнесом",
+    manageBusinessDescription: "Створюйте та керуйте своїм бізнесом і послугами",
+    
+    // Service
+    createService: "Створити послугу",
+    serviceDescription: "Додайте нову послугу",
+    serviceName: "Назва послуги",
+    duration: "Тривалість",
+    price: "Ціна",
+    serviceCreated: "Послуга успішно створена",
+    serviceCreateError: "Помилка створення послуги",
+    
+    // Booking
+    createBooking: "Створити бронювання",
+    bookingDescription: "Забронюйте послугу",
+    selectService: "Оберіть послугу",
+    dateTime: "Дата і час",
+    selectedTime: "Обраний час"
   },
 
   en: {
@@ -126,7 +168,49 @@ export const translations = {
     euro: "€",
     pending: "Pending",
     confirmedStatus: "Confirmed",
-    cancelled: "Cancelled"
+    cancelled: "Cancelled",
+    
+    // Auth
+    auth: "Authentication",
+    authDescription: "Login or register",
+    login: "Login",
+    signUp: "Sign Up",
+    email: "Email",
+    password: "Password",
+    firstName: "First Name",
+    lastName: "Last Name",
+    phone: "Phone",
+    success: "Success",
+    error: "Error",
+    loginSuccess: "Successfully logged in",
+    signUpSuccess: "Successfully registered",
+    logout: "Logout",
+    
+    // Business
+    createBusiness: "Create Business",
+    businessDescription: "Create your business profile",
+    businessName: "Business Name",
+    description: "Description",
+    businessCreated: "Business successfully created",
+    businessCreateError: "Error creating business",
+    manageBusiness: "Manage Business",
+    manageBusinessDescription: "Create and manage your business and services",
+    
+    // Service
+    createService: "Create Service",
+    serviceDescription: "Add a new service",
+    serviceName: "Service Name",
+    duration: "Duration",
+    price: "Price",
+    serviceCreated: "Service successfully created",
+    serviceCreateError: "Error creating service",
+    
+    // Booking
+    createBooking: "Create Booking",
+    bookingDescription: "Book a service",
+    selectService: "Select Service",
+    dateTime: "Date & Time",
+    selectedTime: "Selected Time"
   },
 
   de: {
@@ -191,7 +275,49 @@ export const translations = {
     euro: "€",
     pending: "Ausstehend",
     confirmedStatus: "Bestätigt",
-    cancelled: "Storniert"
+    cancelled: "Storniert",
+    
+    // Auth
+    auth: "Authentifizierung",
+    authDescription: "Anmelden oder registrieren",
+    login: "Anmelden",
+    signUp: "Registrieren",
+    email: "E-Mail",
+    password: "Passwort",
+    firstName: "Vorname",
+    lastName: "Nachname",
+    phone: "Telefon",
+    success: "Erfolg",
+    error: "Fehler",
+    loginSuccess: "Erfolgreich angemeldet",
+    signUpSuccess: "Erfolgreich registriert",
+    logout: "Abmelden",
+    
+    // Business
+    createBusiness: "Geschäft erstellen",
+    businessDescription: "Erstellen Sie Ihr Geschäftsprofil",
+    businessName: "Geschäftsname",
+    description: "Beschreibung",
+    businessCreated: "Geschäft erfolgreich erstellt",
+    businessCreateError: "Fehler beim Erstellen des Geschäfts",
+    manageBusiness: "Geschäft verwalten",
+    manageBusinessDescription: "Erstellen und verwalten Sie Ihr Geschäft und Ihre Services",
+    
+    // Service
+    createService: "Service erstellen",
+    serviceDescription: "Neuen Service hinzufügen",
+    serviceName: "Service-Name",
+    duration: "Dauer",
+    price: "Preis",
+    serviceCreated: "Service erfolgreich erstellt",
+    serviceCreateError: "Fehler beim Erstellen des Services",
+    
+    // Booking
+    createBooking: "Buchung erstellen",
+    bookingDescription: "Service buchen",
+    selectService: "Service auswählen",
+    dateTime: "Datum & Zeit",
+    selectedTime: "Ausgewählte Zeit"
   }
 }
 

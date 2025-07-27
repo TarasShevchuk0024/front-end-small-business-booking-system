@@ -4,6 +4,9 @@ import { HeroSection } from "@/components/HeroSection"
 import { BookingCalendar } from "@/components/BookingCalendar"
 import { ServiceCard } from "@/components/ServiceCard"
 import { BookingCard } from "@/components/BookingCard"
+import { AuthForms } from "@/components/AuthForms"
+import { BusinessForms } from "@/components/BusinessForms"
+import { BookingForm } from "@/components/BookingForm"
 import { Button } from "@/components/ui/button"
 import { Plus, BarChart3, Users, Calendar } from "lucide-react"
 import { useServices } from "@/hooks/useServices"
@@ -77,6 +80,45 @@ const Index = () => {
       <BookingHeader />
       
       <HeroSection />
+      
+      {/* Authentication Section */}
+      {!isAuthenticated && (
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t('auth')}</h2>
+              <p className="text-muted-foreground">{t('authDescription')}</p>
+            </div>
+            <AuthForms />
+          </div>
+        </section>
+      )}
+
+      {/* Business Management Section - Only for authenticated users */}
+      {isAuthenticated && (
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t('manageBusiness')}</h2>
+              <p className="text-muted-foreground">{t('manageBusinessDescription')}</p>
+            </div>
+            <BusinessForms />
+          </div>
+        </section>
+      )}
+
+      {/* Booking Form Section - Only for authenticated users */}
+      {isAuthenticated && (
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t('createBooking')}</h2>
+              <p className="text-muted-foreground">{t('bookingDescription')}</p>
+            </div>
+            <BookingForm />
+          </div>
+        </section>
+      )}
       
       <main className="max-w-7xl mx-auto px-4 py-12 space-y-12">
         <section className="grid grid-cols-1 md:grid-cols-4 gap-6">

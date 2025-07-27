@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, Users, Settings, Bell } from "lucide-react"
 import { useI18n } from "@/hooks/useI18n"
+import { useAuth } from "@/hooks/useAuth"
 import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 export function BookingHeader() {
   const { t } = useI18n()
+  const { user, logout } = useAuth()
   
   return (
     <header className="bg-card border-b border-border px-6 py-4">
@@ -35,16 +37,25 @@ export function BookingHeader() {
 
         <div className="flex items-center space-x-4">
           <LanguageSwitcher />
-          <Button variant="ghost" size="icon">
-            <Bell className="w-4 h-4" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <Settings className="w-4 h-4" />
-          </Button>
-          <Button variant="outline">
-            <Users className="w-4 h-4 mr-2" />
-            {t('profile')}
-          </Button>
+          {user ? (
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-muted-foreground">
+                {user.first_name} {user.last_name}
+              </span>
+              <Button variant="outline" size="sm" onClick={logout}>
+                {t('logout')}
+              </Button>
+            </div>
+          ) : (
+            <div className="flex space-x-2">
+              <Button variant="outline" size="sm">
+                {t('login')}
+              </Button>
+              <Button size="sm">
+                {t('signUp')}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </header>
