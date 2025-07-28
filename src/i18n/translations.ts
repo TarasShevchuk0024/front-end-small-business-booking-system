@@ -21,6 +21,7 @@ export const translations = {
     clientManagementDesc: "База клієнтів та історія бронювань",
     aiAnalytics: "AI аналітика",
     aiAnalyticsDesc: "Розумні рекомендації для оптимізації",
+    analytics: "Аналітика",
 
     // Stats
     totalBookings: "Всього бронювань",
@@ -103,7 +104,60 @@ export const translations = {
     bookingDescription: "Забронюйте послугу",
     selectService: "Оберіть послугу",
     dateTime: "Дата і час",
-    selectedTime: "Обраний час"
+    selectedTime: "Обраний час",
+    
+    // Home page
+    bookingSystemTitle: 'Система бронювання для вашого бізнесу',
+    bookingSystemSubtitle: 'Дозвольте клієнтам легко бронювати ваші послуги онлайн. Керуйте розкладом, отримуйте аналітику та збільшуйте прибуток',
+    getStarted: 'Розпочати',
+    easyBooking: 'Легке бронювання',
+    easyBookingDesc: 'Інтуїтивно зрозумілий інтерфейс для клієнтів',
+    analyticsDesc: 'Отримуйте детальну статистику',
+    allRightsReserved: 'Всі права захищені',
+    
+    // User types
+    userType: 'Тип користувача',
+    client: 'Клієнт',
+    businessOwner: 'Власник бізнесу',
+    
+    // Dashboards
+    welcome: 'Вітаємо',
+    clientDashboard: 'Клієнтський кабінет',
+    adminDashboard: 'Панель адміністратора',
+    clientDashboardDescription: 'Тут ви можете переглядати доступні послуги та керувати своїми бронюваннями',
+    adminDashboardDescription: 'Керуйте своїм бізнесом, послугами та бронюваннями',
+    clientPortal: 'Клієнтський портал',
+    adminPanel: 'Панель адміністратора',
+    admin: 'Адміністратор',
+    
+    // Navigation
+    overview: 'Огляд',
+    bookings: 'Бронювання',
+    business: 'Бізнес',
+    
+    // Services
+    availableServices: 'Доступні послуги',
+    myBookings: 'Мої бронювання',
+    noServicesAvailable: 'Немає доступних послуг',
+    bookService: 'Забронювати послугу',
+    manageServices: 'Управління послугами',
+    recentServices: 'Останні послуги',
+    yourLatestServices: 'Ваші найновіші послуги',
+    service: 'Послуга',
+    
+    // Bookings
+    manageBookings: 'Управління бронюваннями',
+    latestBookingRequests: 'Останні запити на бронювання',
+    bookingId: 'ID бронювання',
+    
+    // Clients
+    clientManagementComingSoon: 'Управління клієнтами незабаром буде доступне',
+    
+    // Business
+    businessManagement: 'Управління бізнесом',
+    
+    // Misc
+    ofTotal: 'від загальної кількості'
   },
 
   en: {
@@ -128,6 +182,7 @@ export const translations = {
     clientManagementDesc: "Client database and booking history",
     aiAnalytics: "AI analytics",
     aiAnalyticsDesc: "Smart recommendations for optimization",
+    analytics: "Analytics",
 
     // Stats
     totalBookings: "Total bookings",
@@ -210,7 +265,60 @@ export const translations = {
     bookingDescription: "Book a service",
     selectService: "Select Service",
     dateTime: "Date & Time",
-    selectedTime: "Selected Time"
+    selectedTime: "Selected Time",
+    
+    // Home page
+    bookingSystemTitle: 'Booking System for Your Business',
+    bookingSystemSubtitle: 'Let clients easily book your services online. Manage schedules, get analytics, and increase profits',
+    getStarted: 'Get Started',
+    easyBooking: 'Easy Booking',
+    easyBookingDesc: 'Intuitive interface for clients',
+    analyticsDesc: 'Get detailed statistics',
+    allRightsReserved: 'All rights reserved',
+    
+    // User types
+    userType: 'User Type',
+    client: 'Client',
+    businessOwner: 'Business Owner',
+    
+    // Dashboards
+    welcome: 'Welcome',
+    clientDashboard: 'Client Dashboard',
+    adminDashboard: 'Admin Dashboard',
+    clientDashboardDescription: 'Here you can view available services and manage your bookings',
+    adminDashboardDescription: 'Manage your business, services, and bookings',
+    clientPortal: 'Client Portal',
+    adminPanel: 'Admin Panel',
+    admin: 'Admin',
+    
+    // Navigation
+    overview: 'Overview',
+    bookings: 'Bookings',
+    business: 'Business',
+    
+    // Services
+    availableServices: 'Available Services',
+    myBookings: 'My Bookings',
+    noServicesAvailable: 'No services available',
+    bookService: 'Book Service',
+    manageServices: 'Manage Services',
+    recentServices: 'Recent Services',
+    yourLatestServices: 'Your latest services',
+    service: 'Service',
+    
+    // Bookings
+    manageBookings: 'Manage Bookings',
+    latestBookingRequests: 'Latest booking requests',
+    bookingId: 'Booking ID',
+    
+    // Clients
+    clientManagementComingSoon: 'Client management coming soon',
+    
+    // Business
+    businessManagement: 'Business Management',
+    
+    // Misc
+    ofTotal: 'of total'
   },
 
   de: {
@@ -235,6 +343,7 @@ export const translations = {
     clientManagementDesc: "Kundendatenbank und Buchungshistorie",
     aiAnalytics: "KI-Analytik",
     aiAnalyticsDesc: "Intelligente Empfehlungen zur Optimierung",
+    analytics: "Analytik",
 
     // Stats
     totalBookings: "Gesamtbuchungen",
@@ -317,7 +426,60 @@ export const translations = {
     bookingDescription: "Service buchen",
     selectService: "Service auswählen",
     dateTime: "Datum & Zeit",
-    selectedTime: "Ausgewählte Zeit"
+    selectedTime: "Ausgewählte Zeit",
+    
+    // Home page
+    bookingSystemTitle: 'Buchungssystem für Ihr Unternehmen',
+    bookingSystemSubtitle: 'Lassen Sie Kunden Ihre Dienstleistungen einfach online buchen. Verwalten Sie Termine, erhalten Sie Analysen und steigern Sie Gewinne',
+    getStarted: 'Loslegen',
+    easyBooking: 'Einfache Buchung',
+    easyBookingDesc: 'Intuitive Benutzeroberfläche für Kunden',
+    analyticsDesc: 'Detaillierte Statistiken erhalten',
+    allRightsReserved: 'Alle Rechte vorbehalten',
+    
+    // User types
+    userType: 'Benutzertyp',
+    client: 'Kunde',
+    businessOwner: 'Geschäftsinhaber',
+    
+    // Dashboards
+    welcome: 'Willkommen',
+    clientDashboard: 'Kunden-Dashboard',
+    adminDashboard: 'Admin-Dashboard',
+    clientDashboardDescription: 'Hier können Sie verfügbare Services anzeigen und Ihre Buchungen verwalten',
+    adminDashboardDescription: 'Verwalten Sie Ihr Unternehmen, Services und Buchungen',
+    clientPortal: 'Kundenportal',
+    adminPanel: 'Admin-Panel',
+    admin: 'Admin',
+    
+    // Navigation
+    overview: 'Übersicht',
+    bookings: 'Buchungen',
+    business: 'Unternehmen',
+    
+    // Services
+    availableServices: 'Verfügbare Services',
+    myBookings: 'Meine Buchungen',
+    noServicesAvailable: 'Keine Services verfügbar',
+    bookService: 'Service buchen',
+    manageServices: 'Services verwalten',
+    recentServices: 'Aktuelle Services',
+    yourLatestServices: 'Ihre neuesten Services',
+    service: 'Service',
+    
+    // Bookings
+    manageBookings: 'Buchungen verwalten',
+    latestBookingRequests: 'Neueste Buchungsanfragen',
+    bookingId: 'Buchungs-ID',
+    
+    // Clients
+    clientManagementComingSoon: 'Kundenverwaltung kommt bald',
+    
+    // Business
+    businessManagement: 'Unternehmensverwaltung',
+    
+    // Misc
+    ofTotal: 'von gesamt'
   }
 }
 

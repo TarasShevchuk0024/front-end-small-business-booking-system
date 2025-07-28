@@ -11,7 +11,7 @@ import { useBookings } from "@/hooks/useBookings"
 import { useAuth } from "@/hooks/useAuth"
 import { Service } from "@/types/api"
 
-export function BookingForm() {
+export function BookingForm({ selectedServiceId, onSuccess }: { selectedServiceId?: string; onSuccess?: () => void }) {
   const { t } = useI18n()
   const { toast } = useToast()
   const { services } = useServices()

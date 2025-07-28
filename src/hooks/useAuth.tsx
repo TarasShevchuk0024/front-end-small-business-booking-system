@@ -33,15 +33,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (result.token) {
         // In a real app, you'd decode the JWT to get user info
         // For now, we'll simulate user data
-        setUser({
+        const userData = {
           id: '1',
           first_name: 'User',
           last_name: 'Name',
           email: credentials.email,
           phone_number: '',
-          type: 'USER',
-          status: 'ACTIVE'
-        });
+          type: 'USER' as 'USER' | 'ADMIN',
+          status: 'ACTIVE' as 'ACTIVE' | 'BLOCKED' | 'PENDING'
+        };
+        setUser(userData);
+        
+        // Redirect based on user type
+        if (userData.type === 'ADMIN') {
+          window.location.href = '/admin';
+        } else {
+          window.location.href = '/client';
+        }
+        
         toast({
           title: 'Success',
           description: 'Successfully logged in',
@@ -106,6 +115,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     apiService.logout();
     setUser(null);
+    window.location.href = '/';
     toast({
       title: 'Success',
       description: 'Successfully logged out',
