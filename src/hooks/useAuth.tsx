@@ -29,22 +29,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (credentials: AuthCredentials): Promise<boolean> => {
     try {
       setLoading(true);
+      console.log('Attempting login with:', credentials.email);
+      
       const result = await apiService.login(credentials);
+      console.log('Login result:', result);
+      
       if (result.token) {
+        console.log('Login successful, token received');
+        
         // Get user info from backend after successful login
         try {
           const userInfo = await apiService.getCurrentUser();
+          console.log('User info received:', userInfo);
           setUser(userInfo);
           
           // Redirect based on user type
+          console.log('Redirecting user based on type:', userInfo.type);
           if (userInfo.type === 'ADMIN') {
             window.location.href = '/admin';
           } else {
             window.location.href = '/client';
           }
         } catch (userError) {
-          // Fallback if getUserById fails
-          console.error('Error getting user info:', userError);
+          // Fallback if getCurrentUser fails
+          console.error('Error getting user info, using fallback:', userError);
           const userData = {
             id: '1',
             first_name: 'User',
@@ -55,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             status: 'ACTIVE' as 'ACTIVE' | 'BLOCKED' | 'PENDING'
           };
           setUser(userData);
+          console.log('Using fallback user data, redirecting to client');
           window.location.href = '/client';
         }
         
@@ -63,9 +72,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           description: 'Successfully logged in',
         });
         return true;
+      } else {
+        console.log('Login failed - no token received');
+        return false;
       }
-      return false;
     } catch (err) {
+      console.error('Login error:', err);
       const errorMessage = err instanceof Error ? err.message : 'Login failed';
       toast({
         title: 'Error',

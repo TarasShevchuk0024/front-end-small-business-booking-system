@@ -93,16 +93,27 @@ class ApiService {
   }
 
   async getCurrentUser(): Promise<User> {
-    // Since backend doesn't support /users/me, we need to get user info from token
-    // For now, we'll need to decode JWT or use a different approach
-    // Let's try getting all users and filter by current token (not ideal but temporary)
+    // Get user info from token - use a proper endpoint that returns current user data
     try {
-      const users = await this.request<User[]>('/users');
-      // Return first user as fallback - in real app you'd decode JWT
-      return users[0];
+      // Try to get current user from backend
+      const response = await this.request<{ user: User }>('/users/current', {
+        method: 'GET',
+      });
+      return response.user;
     } catch (error) {
-      // If that fails, return mock data
-      throw new Error('Unable to get current user');
+      console.error('Error getting current user:', error);
+      // If backend doesn't support /users/current, try alternative approach
+      try {
+        const users = await this.request<User[]>('/users');
+        if (users && users.length > 0) {
+          // For now return the first user - this should be improved with proper JWT parsing
+          return users[0];
+        }
+        throw new Error('No users found');
+      } catch (fallbackError) {
+        console.error('Fallback error:', fallbackError);
+        throw new Error('Unable to get current user');
+      }
     }
   }
 
