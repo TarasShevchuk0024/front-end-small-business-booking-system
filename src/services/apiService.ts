@@ -92,6 +92,10 @@ class ApiService {
     return this.request<User>(`/users/${id}`);
   }
 
+  async getCurrentUser(): Promise<User> {
+    return this.request<User>('/users/me');
+  }
+
   async createUser(userData: UserCreate): Promise<void> {
     return this.request<void>('/users', {
       method: 'POST',

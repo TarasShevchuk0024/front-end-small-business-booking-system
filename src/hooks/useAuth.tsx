@@ -31,23 +31,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       const result = await apiService.login(credentials);
       if (result.token) {
-        // In a real app, you'd decode the JWT to get user info
-        // For now, we'll simulate user data
-        const userData = {
-          id: '1',
-          first_name: 'User',
-          last_name: 'Name',
-          email: credentials.email,
-          phone_number: '',
-          type: 'USER' as 'USER' | 'ADMIN',
-          status: 'ACTIVE' as 'ACTIVE' | 'BLOCKED' | 'PENDING'
-        };
-        setUser(userData);
-        
-        // Redirect based on user type
-        if (userData.type === 'ADMIN') {
-          window.location.href = '/admin';
-        } else {
+        // Get user info from backend after successful login
+        try {
+          const userInfo = await apiService.getCurrentUser();
+          setUser(userInfo);
+          
+          // Redirect based on user type
+          if (userInfo.type === 'ADMIN') {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/client';
+          }
+        } catch (userError) {
+          // Fallback if getUserById fails
+          console.error('Error getting user info:', userError);
+          const userData = {
+            id: '1',
+            first_name: 'User',
+            last_name: 'Name',
+            email: credentials.email,
+            phone_number: '',
+            type: 'USER' as 'USER' | 'ADMIN',
+            status: 'ACTIVE' as 'ACTIVE' | 'BLOCKED' | 'PENDING'
+          };
+          setUser(userData);
           window.location.href = '/client';
         }
         
@@ -83,15 +90,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       const result = await apiService.signUp(userData);
       if (result.token) {
-        setUser({
-          id: '1',
-          first_name: userData.first_name,
-          last_name: userData.last_name,
-          email: userData.email,
-          phone_number: userData.phone_number,
-          type: userData.type,
-          status: 'ACTIVE'
-        });
+        // Get user info from backend after successful signup
+        try {
+          const userInfo = await apiService.getCurrentUser();
+          setUser(userInfo);
+          
+          // Redirect based on user type
+          if (userInfo.type === 'ADMIN') {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/client';
+          }
+        } catch (userError) {
+          // Fallback if getUserById fails
+          setUser({
+            id: '1',
+            first_name: userData.first_name,
+            last_name: userData.last_name,
+            email: userData.email,
+            phone_number: userData.phone_number,
+            type: userData.type,
+            status: 'ACTIVE'
+          });
+          
+          if (userData.type === 'ADMIN') {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/client';
+          }
+        }
         toast({
           title: 'Success',
           description: 'Account created successfully',
@@ -126,19 +153,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check if user is already logged in
     const token = localStorage.getItem('auth_token');
     if (token) {
-      // In a real app, you'd validate the token and get user info
-      // For now, simulate a logged-in user
-      setUser({
-        id: '1',
-        first_name: 'User',
-        last_name: 'Name',
-        email: 'user@example.com',
-        phone_number: '',
-        type: 'USER',
-        status: 'ACTIVE'
-      });
+      // Get current user info from backend
+      apiService.getCurrentUser()
+        .then(userInfo => {
+          setUser(userInfo);
+        })
+        .catch(error => {
+          console.error('Error getting current user:', error);
+          // Token might be invalid, remove it
+          localStorage.removeItem('auth_token');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   const value = {
